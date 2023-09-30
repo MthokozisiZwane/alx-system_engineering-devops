@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Check if the file 'school' exists and provide information about it
+# Check if the file 'school' exists and provide information about it using if and else statements
 if [ -e school ]; then
   echo "school file exists"
   if [ -s school ]; then
