@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Display numbers from 1 to 20, display messages based on specific iterations using a while loop and case statement
+count=1
+while [ $count -le 20 ]; do
+  case $count in
+    4) printf "4\nbad luck from China" ;;
+    9) printf "9\nbad luck from Japan" ;;
+    17) printf "17\nbad luck from Italy" ;;
+    *) printf  "%s\n" "$count" ;;
+  esac
+  ((count++))
+done
+
