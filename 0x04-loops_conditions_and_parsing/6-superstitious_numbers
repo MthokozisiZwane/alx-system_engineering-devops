@@ -3,9 +3,9 @@
 count=1
 while [ $count -le 20 ]; do
   case $count in
-    4) printf "4\nbad luck from China" ;;
-    9) printf "9\nbad luck from Japan" ;;
-    17) printf "17\nbad luck from Italy" ;;
+    4) printf "4\nbad luck from China\n" ;;
+    9) printf "9\nbad luck from Japan\n" ;;
+    17) printf "17\nbad luck from Italy\n" ;;
     *) printf  "%s\n" "$count" ;;
   esac
   ((count++))
