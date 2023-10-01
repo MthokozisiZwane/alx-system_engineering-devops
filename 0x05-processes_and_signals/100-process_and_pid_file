@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# This script creates a PID file, displays messages, and handles signals.
+
+# Create a PID file
+echo $$ > /var/run/myscript.pid
+
+# Function to handle SIGTERM signal
+termfun() {
+    echo "Y U no love me?!"
+    rm -f /var/run/myscript.pid
+    exit
+}
+
+# Function to handle SIGINT signal
+intfun() {
+    echo "I hate the kill command"
+}
+
+# Trap signals
+trap termfun SIGTERM
+trap intfun SIGINT
+
+# Display messages indefinitely
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done
+
