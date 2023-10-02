@@ -9,7 +9,7 @@ start_process() {
 
 # Function to stop the process
 stop_process() {
-    kill $(cat /var/run/my_process.pid)
+    kill "$(cat /var/run/my_process.pid)"
     rm -f /var/run/my_process.pid
     echo "manage_my_process stopped."
 }
