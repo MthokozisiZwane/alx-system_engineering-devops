@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script displays listening ports
+
+# Displays listening sockets with PID and program name to which it belongs
+sudo netstat -tulpan
+
+
