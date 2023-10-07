@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
-# This script answers questions related to UDP and TCP
+# This script answers questions about UDP and TCP
 
-# Which statement is correct for the TCP box:
-2
+# Which statement is correct for the TCP box?
+# 1. It is a protocol that is transferring data in a slow way but surely
+echo "1"
 
-# Which statement is correct for the UDP box:
-1
+# Which statement is correct for the UDP box?
+# 2. It is a protocol that is transferring data in a fast way and might lose data along the process
+echo "2"
 
-# Which statement is correct for the TCP worker:
-2
+# Which statement is correct for the TCP worker?
+# 1. Have you received boxes x, y, z?
+echo "1"
+
 
 
