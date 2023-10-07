@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 # This script displays all active IPv4 IPs
 
-ifconfig | grep -oP 'inet \K\S+' | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'
+# Install iproute2 if not present
+if ! command -v ip &> /dev/null; then
+    apt-get update
+    apt-get install -y iproute2
+fi
+
+# Uses ip to display active IPv4 IPs
+ip -4 addr show | awk '/inet / {print $2}' | cut -d'/' -f1
 
