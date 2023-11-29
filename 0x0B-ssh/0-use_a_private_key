@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-eval $("ssh-agent")
 
-ssh-add 0x04-loops_conditions_and_parsing/0-RSA_public_key
+# Script to connect to the server using SSH with a private key
 
-ssh ubuntu@34.229.69.166 
+# Replace the IP address with your server's actual IP
+SERVER_IP="34.229.69.166"
+PRIVATE_KEY_PATH=~/.ssh/school
+
+# Connect to the server using ssh with the specified private key and user
+ssh -i "$PRIVATE_KEY_PATH" ubuntu@"$34.229.69.166"
+
+
