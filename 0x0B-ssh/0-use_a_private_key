@@ -3,11 +3,4 @@
 
 # Script to connect to the server using SSH with a private key
 
-# Replace the IP address with your server's actual IP
-SERVER_IP="34.229.69.166"
-PRIVATE_KEY_PATH=~/.ssh/school
-
-# Connect to the server using ssh with the specified private key and user
-ssh -i "$PRIVATE_KEY_PATH" ubuntu@"$34.229.69.166"
-
-
+ssh ubuntu -i ~/.ssh/school
