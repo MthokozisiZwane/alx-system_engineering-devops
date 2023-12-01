@@ -11,5 +11,5 @@ server_ip="$2"
 username="$3"
 ssh_key_path="$4"
 
-scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$ubuntu@$34.229.69.166":~/
+scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$ubuntu@${34}.{229}.{69}.{166}":~/
 
