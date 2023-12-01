@@ -8,4 +8,4 @@ sudo ufw 'Nginx HTTP'
 echo "Hello World!" | sudo tee /var/www/html/index.html
 sudo nginx -t
 
-sudo nginx restart
+sudo nginx reload
