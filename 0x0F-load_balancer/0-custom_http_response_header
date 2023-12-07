@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# configuring an htttp header responce for web-01/02
+# configuring an HTTP header response for web-01/02
 
 # updating packages
 sudo apt-get update
@@ -15,11 +15,12 @@ sudo sed -i "s|server_name _;|$string_redirect|" /etc/nginx/sites-enabled/defaul
 # creating a custom error page
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 
-# custom http response header
+# custom HTTP response header
 sudo sed -i "/server_name _/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
 
 # Test Nginx configuration
 sudo nginx -t
 
-# restart nginx
-sudo service restart
+# Restart Nginx
+sudo systemctl restart nginx
+
