@@ -1,26 +1,4 @@
 #!/usr/bin/env bash
 # This script configures Nginx to listen on port 80
-
-# Checking if Nginx is installed
-if [ -x "/usr/sbin/nginx" ]; then
-    echo "Nginx is already installed."
-else
-    # Install Nginx if not already installed
-    apt-get update
-    apt-get install -y nginx
-fi
-
-# Backing up the default Nginx configuration
-cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
-
-# Update Nginx configuration to listen on port 80
-sed -i 's/\blisten 80;/listen 80 default_server;/g' /etc/nginx/sites-available/default
-
-# Testing Nginx configuration
-if nginx -t; then
-    # Restart Nginx only if the configuration test is successful
-    service nginx restart
-else
-    echo "Nginx configuration test failed. Please check the configuration and try again."
-fi
-
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
