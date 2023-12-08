@@ -9,7 +9,7 @@ sudo apt-get install -y nginx
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
 # performing a redirection
-string_redirect="server_name _;\\n\\trewrite ^\\/redirect_me https:\\/\\/github.com\\/MthokozisiZwane permanent;"
+string_redirect="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/MthokozisiZwane permanent;"
 sudo sed -i "s|server_name _;|$string_redirect|" /etc/nginx/sites-enabled/default
 
 # creating a custom error page
