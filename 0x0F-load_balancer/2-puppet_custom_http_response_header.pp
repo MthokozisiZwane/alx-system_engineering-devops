@@ -1,43 +1,24 @@
-# web_configuration.pp
+# 2-puppet_custom_http_response_header.pp
 
-# Ensure Nginx is installed
+# Install Nginx package
 package { 'nginx':
   ensure => installed,
 }
 
-# The index page
-file { '/var/www/html/index.html':
+# Define custom HTTP header configuration
+file { '/etc/nginx/sites-available/default':
   ensure  => present,
-  content => 'Hello World!',
+  content => "add_header X-Served-By $hostname;\n",
 }
 
-# Performing a redirection
+# Create symbolic link to enable the custom header configuration
 file { '/etc/nginx/sites-enabled/default':
-  ensure  => present,
-  content => "server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/MthokozisiZwane permanent;",
+  ensure => link,
+  target => '/etc/nginx/sites-availabledefault',
 }
 
-# Creating a custom error page
-file { '/var/www/html/404.html':
-  ensure  => present,
-  content => "Ceci n'est pas une page",
-}
-
-# Custom HTTP response header
-file { '/etc/nginx/sites-enabled/default':
-  ensure  => present,
-  content => "add_header X-Served-By $hostname;",
-}
-
-# Test Nginx configuration
-exec { 'nginx_config_test':
-  command => 'nginx -t',
-  require => File['/etc/nginx/sites-enabled/default'],
-}
-
-# Restart Nginx
+# Restart Nginx to apply changes
 service { 'nginx':
-  ensure  => running,
-  enable  => true,
-  require => Exec['nginx_config_test'],
+  ensure    => running,
+  subscribe => File['/etc/nginx/sites-available/default'],
 }
