@@ -14,4 +14,3 @@ cp "$temp_hosts" /etc/hosts
 
 # Cleanup: Removing the temporary file
 rm "$temp_hosts"
-
