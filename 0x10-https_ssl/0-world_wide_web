@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Function to display subdomain information
 display_info() {
     local sub_domain="$1"
