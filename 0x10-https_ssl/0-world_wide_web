@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# Function to display subdomain information
+display_info() {
+    local sub_domain="$1"
+    local domain="$2"
+    local record_type="$3"
+    local destination="$4"
+
+    echo "The subdomain $sub_domain is a $record_type record and points to $destination"
+}
+
+# Main script
+domain="$1"
+subdomain="$2"
+
+# If subdomain is not provided, sets default subdomains
+if [ -z "$subdomain" ]; then
+    subdomains=("www" "lb-01" "web-01" "web-02")
+else
+    subdomains=("$subdomain")
+fi
+
+# Loop through subdomains and display information
+for sub in "${subdomains[@]}"; do
+    result=$(dig +short "$sub.$domain")
+    record_type=$(dig "$sub.$domain" | awk '/ANSWER SECTION/ {getline; print $4}')
+
+    if [ -z "$result" ]; then
+        echo "No records found for $sub.$domain"
+    else
+        display_info "$sub" "$domain" "$record_type" "$result"
+    fi
+done
