@@ -33,12 +33,12 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-
 frontend mthokozisi.tech_front
     bind *:80
-    bind *:443 ssl crt /etc/ssl/certs/mthokozisi.tech.pem
-    reqadd X-Forwarded-Proto:\ https
+    bind *:443 ssl crt /etc/letsencrypt/live/www.mthokozisi.tech/fullchain_private.pem
+    http-request set-header X-Forwarded-Proto https
     mode http
+    http-request redirect scheme https unless { ssl_fc }
     default_backend mthokozisi.tech_back
 
 backend mthokozisi.tech_back
@@ -46,3 +46,4 @@ backend mthokozisi.tech_back
     balance roundrobin
     server web-01 52.86.97.136:80 check
     server web-02 52.3.243.60:80 check
+
