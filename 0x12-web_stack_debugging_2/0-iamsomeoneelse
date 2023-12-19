@@ -6,5 +6,4 @@ if [ "$#" -ne 1 ]; then #check if 1 argument is passed
     exit 1
 fi
 
-whoami
 sudo -u "$1" whoami
