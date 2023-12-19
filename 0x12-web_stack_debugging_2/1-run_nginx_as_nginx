@@ -6,6 +6,6 @@ sed -i 's/user .*;/user nginx;/' /etc/nginx/nginx.conf
 
 # Ensures Nginx is listening on all active IPs on port 8080
 sed -i 's/listen \(.*\)80;/listen 8080;/' /etc/nginx/sites-available/default
-
+chmod 644 /etc/nginx/nginx.conf
 # Restarts Nginx to apply changes
-service nginx restart
+sudo -u nginx service nginx restart
