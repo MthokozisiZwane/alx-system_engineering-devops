@@ -3,8 +3,8 @@
 Script to gather data from an API for a given employee ID.
 """
 
-import requests
 import sys
+import requests
 
 
 def gather_data(employee_id):
@@ -24,7 +24,8 @@ def gather_data(employee_id):
         completed_tasks = [task for task in todos_data if task['completed']]
         total_tasks = len(todos_data)
 
-        print(f"Employee {user_data['name']} is done with tasks({len(completed_tasks)}/{total_tasks}): ")
+        print(f"Employee {user_data['name']} is done with tasks "
+              f"({len(completed_tasks)}/{total_tasks}):")
         for task in completed_tasks:
             print(f"\t{task['title']}")
 
