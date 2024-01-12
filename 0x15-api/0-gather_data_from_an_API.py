@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+A script to gather employee data based on given api
+"""
+
 
 import requests
 import sys
