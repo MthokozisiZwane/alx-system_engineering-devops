@@ -1,10 +1,7 @@
 #!/usr/bin/python3
-"""
-Script to gather data from an API for a given employee ID.
-"""
 
-import sys
 import requests
+import sys
 
 
 def gather_data(employee_id):
@@ -18,6 +15,15 @@ def gather_data(employee_id):
     try:
         user_response = requests.get(user_url)
         todos_response = requests.get(todos_url)
+
+        # Check for HTTP errors
+        if user_response.status_code != 200 or \
+           todos_response.status_code != 200:
+            print(f"Error: Unable to fetch data. Status codes - "
+                  f"User: {user_response.status_code}, "
+                  f"Todos: {todos_response.status_code}")
+            sys.exit(1)
+
         user_data = user_response.json()
         todos_data = todos_response.json()
 
