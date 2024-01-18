@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-querries reddit api for number of subcribers
+querries reddit for subscribers
 """
 import requests
 
@@ -10,13 +10,17 @@ def number_of_subscribers(subreddit):
     Returns the number of subscribers for a given subreddit.
     If the subreddit is invalid, returns 0.
     """
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     headers = {'User-Agent': 'RedditAPIRequest/1.0 (+https:\
-            //github.com/MthokozisiZwane)'}
-    response = requests.get(url, headers=headers, allow_redirects=False)
+               //github.com/MthokozisiZwane)'}
+    url = f'https://www.reddit.com/r/{subreddit}/about.json'
+    try:
+        response = requests.get(url, headers=headers, allow_redirects=False)
 
-    if response.status_code == 200:
-        data = response.json().get('data', {})
-        return data.get('subscribers', 0)
-    else:
+        if response.status_code == 200:
+            data = response.json().get('data', {})
+            return data.get('subscribers', 0)
+        else:
+            return 0
+    except Exception as e:
+        print(f"Error: {e}")
         return 0
